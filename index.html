@@ -7,44 +7,77 @@
 
 <style>
 
+/* ===== Animated Background ===== */
 body{
     margin:0;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top,#6a0060,#150018);
     color:white;
     text-align:center;
+    background: linear-gradient(-45deg,#4b0042,#12001a,#6a0060,#1a0025);
+    background-size:400% 400%;
+    animation:bgMove 10s infinite alternate;
+    overflow-x:hidden;
 }
 
-/* Main Container */
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+/* ===== Floating Coins ===== */
+.coin{
+    position:fixed;
+    font-size:30px;
+    animation:float 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh) rotate(0deg);}
+    to{transform:translateY(-10vh) rotate(360deg);}
+}
+
+/* ===== Container ===== */
 .container{
     max-width:900px;
     margin:auto;
     padding:30px 20px;
 }
 
-/* Top Icons */
-.icons{
-    font-size:60px;
-    margin-bottom:10px;
-}
-
-/* Title */
+/* ===== Title Glow ===== */
 .title{
     font-size:65px;
     font-weight:bold;
     background:linear-gradient(45deg,#00d9ff,#ff00d4);
     -webkit-background-clip:text;
     color:transparent;
-    text-shadow:0 0 20px rgba(255,255,255,0.3);
+    text-shadow:0 0 25px #ff00cc;
+    animation:pulse 2s infinite alternate;
+}
+
+@keyframes pulse{
+    from{text-shadow:0 0 15px #ff00cc;}
+    to{text-shadow:0 0 40px #00e1ff;}
 }
 
 .subtitle{
     font-size:26px;
     color:#ffd700;
-    margin-top:10px;
 }
 
-/* Button Style */
+/* ===== Casino Icons ===== */
+.icons{
+    font-size:60px;
+    margin-bottom:10px;
+    animation:spin 6s linear infinite;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+/* ===== CTA Button ===== */
 .btn{
     display:inline-block;
     margin:25px 0;
@@ -55,27 +88,29 @@ body{
     border-radius:50px;
     text-decoration:none;
     background:linear-gradient(45deg,#ff2e00,#ff9100);
-    box-shadow:0 0 15px #ff6a00;
+    box-shadow:0 0 20px #ff6a00;
+    animation:btnGlow 1.5s infinite alternate;
     transition:0.3s;
 }
 
 .btn:hover{
-    transform:scale(1.08);
+    transform:scale(1.1);
 }
 
-/* Feature List */
-.features{
-    margin-top:20px;
-    font-size:18px;
+@keyframes btnGlow{
+    from{box-shadow:0 0 10px #ff6a00;}
+    to{box-shadow:0 0 35px #ffea00;}
 }
 
+/* ===== Feature List ===== */
 .features p{
+    font-size:18px;
     margin:8px 0;
 }
 
-/* Step Section */
+/* ===== Steps ===== */
 .steps{
-    margin-top:35px;
+    margin-top:30px;
 }
 
 .step-box{
@@ -86,41 +121,40 @@ body{
 }
 
 .step{
-    background:rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.08);
     padding:15px 25px;
     border-radius:15px;
     min-width:200px;
-    font-size:18px;
-    box-shadow:0 0 10px rgba(255,215,0,0.3);
+    box-shadow:0 0 15px rgba(255,215,0,0.4);
+    transition:0.3s;
 }
 
-/* Stars Rating */
+.step:hover{
+    transform:translateY(-5px);
+}
+
+/* ===== Stars ===== */
 .stars{
     font-size:30px;
-    margin-top:25px;
     color:#ffd700;
+    margin-top:20px;
+    animation:blink 1.5s infinite alternate;
 }
 
-/* Bottom Text */
+@keyframes blink{
+    from{opacity:0.6;}
+    to{opacity:1;}
+}
+
 .bottom-text{
     margin-top:30px;
     font-size:22px;
     color:#ffcc00;
 }
 
-/* Money Decoration */
-.money{
-    font-size:40px;
-    margin-top:15px;
-}
-
-/* Mobile */
+/* ===== Mobile ===== */
 @media(max-width:600px){
-
-.title{
-    font-size:45px;
-}
-
+.title{font-size:45px;}
 }
 
 </style>
@@ -128,47 +162,51 @@ body{
 
 <body>
 
+<!-- Floating Coins -->
+<div class="coin" style="left:10%">🪙</div>
+<div class="coin" style="left:30%; animation-delay:2s">💰</div>
+<div class="coin" style="left:60%; animation-delay:1s">🪙</div>
+<div class="coin" style="left:80%; animation-delay:3s">💰</div>
+
 <div class="container">
 
-    <div class="icons">♣ ♥ ♠ ♦ 🎲</div>
+<div class="icons">♣ ♥ ♠ ♦ 🎲</div>
 
-    <div class="title">FLYING CHESS</div>
-    <div class="subtitle">Real Rewards Jeeto</div>
+<div class="title">FLYING CHESS</div>
+<div class="subtitle">Real Rewards Jeeto</div>
 
-    <p>Fast Game • Easy Rules • Daily Rewards</p>
+<p>Fast Game • Easy Rules • Daily Rewards</p>
 
-    <a class="btn" href="https://tinyurl.com/3hbvkujv">DOWNLOAD & START PLAYING</a>
+<a class="btn" href="https://tinyurl.com/3hbvkujv">DOWNLOAD & START PLAYING</a>
 
-    <div class="features">
-        <p>✔ Fast Withdrawals</p>
-        <p>✔ Secure Game</p>
-        <p>✔ Easy To Play</p>
-    </div>
+<div class="features">
+<p>✔ Fast Withdrawals</p>
+<p>✔ Secure Game</p>
+<p>✔ Easy To Play</p>
+</div>
 
-    <div class="steps">
-        <h2>Sirf 3 Steps</h2>
+<div class="steps">
+<h2>Sirf 3 Steps</h2>
 
-        <div class="step-box">
-            <div class="step">1️⃣ Register</div>
-            <div class="step">2️⃣ Play Flying Chess</div>
-            <div class="step">3️⃣ Get Rewards</div>
-        </div>
-    </div>
+<div class="step-box">
+<div class="step">1️⃣ Register</div>
+<div class="step">2️⃣ Play Flying Chess</div>
+<div class="step">3️⃣ Get Rewards</div>
+</div>
+</div>
 
-    <div class="stars">★★★★★</div>
+<div class="stars">★★★★★</div>
 
-    <div class="features">
-        <p>✔ Light & Smooth App</p>
-        <p>✔ Har Din Chance</p>
-        <p>✔ Simple Gameplay</p>
-        <p>✔ Time Pass + Rewards</p>
-    </div>
+<div class="features">
+<p>✔ Light & Smooth App</p>
+<p>✔ Har Din Chance</p>
+<p>✔ Simple Gameplay</p>
+<p>✔ Time Pass + Rewards</p>
+</div>
 
-    <div class="money">💰 💵 🪙</div>
+<div class="bottom-text">Aaj join karo aur shuru karo</div>
 
-    <div class="bottom-text">Aaj join karo aur shuru karo</div>
-
-    <a class="btn" href="https://tinyurl.com/3hbvkujv">START PLAYING NOW</a>
+<a class="btn" href="https://tinyurl.com/3hbvkujv">START PLAYING NOW</a>
 
 </div>
 
