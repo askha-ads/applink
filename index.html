@@ -28,21 +28,17 @@ overflow-x:hidden;
 .container{
 max-width:900px;
 margin:auto;
-padding:30px 20px 120px;
+padding:30px 20px;
 }
 
 /* ===== Title ===== */
 .title{
-font-size:60px;
+font-size:65px;
 font-weight:bold;
 background:linear-gradient(45deg,#00d9ff,#ff00d4);
 -webkit-background-clip:text;
 color:transparent;
 text-shadow:0 0 25px #ff00cc;
-}
-
-.subtitle{
-font-size:22px;
 }
 
 /* ===== Button ===== */
@@ -83,6 +79,16 @@ animation:shine 2s infinite;
 100%{left:130%;}
 }
 
+/* Shake attention */
+.shake{
+animation:shake 0.4s infinite alternate;
+}
+
+@keyframes shake{
+0%{transform:translateX(-2px);}
+100%{transform:translateX(2px);}
+}
+
 /* ===== Floating Coins ===== */
 .coin{
 position:fixed;
@@ -94,6 +100,12 @@ opacity:0.7;
 @keyframes float{
 from{transform:translateY(100vh);}
 to{transform:translateY(-10vh);}
+}
+
+/* ===== Features ===== */
+.features p{
+margin:8px 0;
+font-size:18px;
 }
 
 /* ===== Steps ===== */
@@ -112,51 +124,71 @@ min-width:200px;
 box-shadow:0 0 15px rgba(255,215,0,0.4);
 }
 
-/* ===== Features ===== */
-.features p{
-margin:8px 0;
-font-size:18px;
+/* ===== Sticky Button ===== */
+.sticky{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+z-index:999;
+}
+
+/* ===== Notification Popup ===== */
+.notify{
+position:fixed;
+bottom:80px;
+left:15px;
+background:#000;
+padding:12px 18px;
+border-radius:10px;
+box-shadow:0 0 15px gold;
+display:none;
+font-size:14px;
 }
 
 /* ===== Countdown ===== */
 .timer{
 font-size:22px;
 color:#ffd700;
-margin:10px 0;
+margin:15px 0;
 }
 
 /* ===== Player Counter ===== */
 .players{
 font-size:18px;
 color:#00ffcc;
+margin-bottom:15px;
 }
 
-/* ===== Promo Image ===== */
-.promo-image{
-margin:40px auto;
-max-width:900px;
-padding:0 20px;
-}
-
-.promo-image img{
+/* ===== App Preview Image ===== */
+.preview-box{
 width:100%;
-border-radius:20px;
-box-shadow:0 0 35px rgba(255,140,0,0.6);
-transition:0.4s;
+max-width:600px;
+margin:40px auto;
+padding:10px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(255,0,0,0.6);
 }
 
-.promo-image img:hover{
-transform:scale(1.02);
-box-shadow:0 0 55px rgba(255,200,0,0.9);
+.preview-box img{
+width:100%;
+height:auto;
+display:block;
+border-radius:12px;
 }
 
-/* ===== Sticky Button ===== */
-.sticky{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-z-index:999;
+/* Mobile Fit */
+@media(max-width:600px){
+.preview-box{
+max-width:95%;
+}
+.title{
+font-size:42px;
+}
+.btn{
+font-size:20px;
+padding:15px 40px;
+}
 }
 
 </style>
@@ -166,13 +198,13 @@ z-index:999;
 
 <!-- Floating Coins -->
 <div class="coin" style="left:10%">🪙</div>
-<div class="coin" style="left:50%;animation-delay:2s">💰</div>
-<div class="coin" style="left:80%;animation-delay:1s">🪙</div>
+<div class="coin" style="left:40%;animation-delay:2s">💰</div>
+<div class="coin" style="left:70%;animation-delay:1s">🪙</div>
 
 <div class="container">
 
 <div class="title">FLYING CHESS</div>
-<h2 class="subtitle">Real Rewards Jeeto</h2>
+<h2>Real Rewards Jeeto</h2>
 
 <div class="players" id="players"></div>
 
@@ -180,7 +212,7 @@ z-index:999;
 Offer Ending In: <span id="countdown"></span>
 </div>
 
-<a class="btn" href="https://tinyurl.com/3hbvkujv">
+<a id="mainBtn" class="btn shake" href="https://tinyurl.com/3hbvkujv">
 DOWNLOAD & START PLAYING
 </a>
 
@@ -205,11 +237,9 @@ DOWNLOAD & START PLAYING
 <p>✔ Time Pass + Rewards</p>
 </div>
 
-<!-- ===== PROMO IMAGE ===== -->
-<div class="promo-image">
-<a href="https://tinyurl.com/3hbvkujv">
-<img src="https://rummygrands.org/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-06-at-3.40.56-PM.webp">
-</a>
+<!-- App Preview Image -->
+<div class="preview-box">
+<img src="https://rummygrands.org/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-06-at-3.40.56-PM.webp" alt="Flying Chess App">
 </div>
 
 </div>
@@ -221,12 +251,54 @@ START PLAYING NOW
 </a>
 </div>
 
+<!-- Fake Win Notification -->
+<div class="notify" id="notify"></div>
+
 <script>
 
-/* Player Counter */
+/* ===== Fake Player Counter ===== */
 function updatePlayers(){
 let num = Math.floor(Math.random()*200)+1200;
 document.getElementById("players").innerText =
 num + " players online playing now";
 }
-setInterval(upd
+setInterval(updatePlayers,3000);
+updatePlayers();
+
+/* ===== Countdown Timer ===== */
+let time = 900;
+setInterval(()=>{
+time--;
+let m = Math.floor(time/60);
+let s = time%60;
+document.getElementById("countdown").innerText =
+m + "m " + s + "s";
+},1000);
+
+/* ===== Fake Win Popup ===== */
+let names = ["Ali","Ravi","Aman","Sara","John","Tariq","Meena"];
+
+function showNotify(){
+let name = names[Math.floor(Math.random()*names.length)];
+let amount = Math.floor(Math.random()*9000)+500;
+
+let box = document.getElementById("notify");
+box.innerText = name + " just won ₹" + amount;
+box.style.display = "block";
+
+setTimeout(()=>{box.style.display="none"},3000);
+}
+
+setInterval(showNotify,5000);
+
+/* ===== Auto Button Focus ===== */
+setTimeout(()=>{
+document.getElementById("mainBtn").scrollIntoView({
+behavior:"smooth"
+});
+},4000);
+
+</script>
+
+</body>
+</html>
