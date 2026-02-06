@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== Animated Background ===== */
+/* ===== Background ===== */
 body{
     margin:0;
     font-family: Arial, sans-serif;
@@ -33,8 +33,8 @@ body{
 }
 
 @keyframes float{
-    from{transform:translateY(100vh) rotate(0deg);}
-    to{transform:translateY(-10vh) rotate(360deg);}
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
 }
 
 /* ===== Container ===== */
@@ -44,7 +44,7 @@ body{
     padding:30px 20px;
 }
 
-/* ===== Title Glow ===== */
+/* ===== Title ===== */
 .title{
     font-size:65px;
     font-weight:bold;
@@ -65,150 +65,16 @@ body{
     color:#ffd700;
 }
 
-/* ===== Casino Icons ===== */
-.icons{
-    font-size:60px;
-    margin-bottom:10px;
-    animation:spin 6s linear infinite;
-}
-
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-/* ===== CTA Button ===== */
+/* ===== HIGH CONVERSION BUTTON ===== */
 .btn{
+    position:relative;
     display:inline-block;
-    margin:25px 0;
-    padding:18px 45px;
-    font-size:22px;
+    margin:30px 0;
+    padding:20px 55px;
+    font-size:24px;
     font-weight:bold;
     color:white;
-    border-radius:50px;
+    border-radius:60px;
     text-decoration:none;
     background:linear-gradient(45deg,#ff2e00,#ff9100);
-    box-shadow:0 0 20px #ff6a00;
-    animation:btnGlow 1.5s infinite alternate;
-    transition:0.3s;
-}
-
-.btn:hover{
-    transform:scale(1.1);
-}
-
-@keyframes btnGlow{
-    from{box-shadow:0 0 10px #ff6a00;}
-    to{box-shadow:0 0 35px #ffea00;}
-}
-
-/* ===== Feature List ===== */
-.features p{
-    font-size:18px;
-    margin:8px 0;
-}
-
-/* ===== Steps ===== */
-.steps{
-    margin-top:30px;
-}
-
-.step-box{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.step{
-    background:rgba(255,255,255,0.08);
-    padding:15px 25px;
-    border-radius:15px;
-    min-width:200px;
-    box-shadow:0 0 15px rgba(255,215,0,0.4);
-    transition:0.3s;
-}
-
-.step:hover{
-    transform:translateY(-5px);
-}
-
-/* ===== Stars ===== */
-.stars{
-    font-size:30px;
-    color:#ffd700;
-    margin-top:20px;
-    animation:blink 1.5s infinite alternate;
-}
-
-@keyframes blink{
-    from{opacity:0.6;}
-    to{opacity:1;}
-}
-
-.bottom-text{
-    margin-top:30px;
-    font-size:22px;
-    color:#ffcc00;
-}
-
-/* ===== Mobile ===== */
-@media(max-width:600px){
-.title{font-size:45px;}
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- Floating Coins -->
-<div class="coin" style="left:10%">🪙</div>
-<div class="coin" style="left:30%; animation-delay:2s">💰</div>
-<div class="coin" style="left:60%; animation-delay:1s">🪙</div>
-<div class="coin" style="left:80%; animation-delay:3s">💰</div>
-
-<div class="container">
-
-<div class="icons">♣ ♥ ♠ ♦ 🎲</div>
-
-<div class="title">FLYING CHESS</div>
-<div class="subtitle">Real Rewards Jeeto</div>
-
-<p>Fast Game • Easy Rules • Daily Rewards</p>
-
-<a class="btn" href="https://tinyurl.com/3hbvkujv">DOWNLOAD & START PLAYING</a>
-
-<div class="features">
-<p>✔ Fast Withdrawals</p>
-<p>✔ Secure Game</p>
-<p>✔ Easy To Play</p>
-</div>
-
-<div class="steps">
-<h2>Sirf 3 Steps</h2>
-
-<div class="step-box">
-<div class="step">1️⃣ Register</div>
-<div class="step">2️⃣ Play Flying Chess</div>
-<div class="step">3️⃣ Get Rewards</div>
-</div>
-</div>
-
-<div class="stars">★★★★★</div>
-
-<div class="features">
-<p>✔ Light & Smooth App</p>
-<p>✔ Har Din Chance</p>
-<p>✔ Simple Gameplay</p>
-<p>✔ Time Pass + Rewards</p>
-</div>
-
-<div class="bottom-text">Aaj join karo aur shuru karo</div>
-
-<a class="btn" href="https://tinyurl.com/3hbvkujv">START PLAYING NOW</a>
-
-</div>
-
-</body>
-</html>
+    box-shadow:0 0 25px #f
