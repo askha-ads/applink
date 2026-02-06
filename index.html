@@ -9,150 +9,155 @@
 
 /* ===== Background ===== */
 body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    color:white;
-    text-align:center;
-    background: linear-gradient(-45deg,#4b0042,#12001a,#6a0060,#1a0025);
-    background-size:400% 400%;
-    animation:bgMove 10s infinite alternate;
-    overflow-x:hidden;
+margin:0;
+font-family:Arial, sans-serif;
+text-align:center;
+color:white;
+background:linear-gradient(-45deg,#4b0042,#12001a,#6a0060,#1a0025);
+background-size:400% 400%;
+animation:bg 10s infinite alternate;
+overflow-x:hidden;
 }
 
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    100%{background-position:100% 50%;}
-}
-
-/* ===== Floating Coins ===== */
-.coin{
-    position:fixed;
-    font-size:30px;
-    animation:float 6s linear infinite;
-    opacity:0.7;
-}
-
-@keyframes float{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
+@keyframes bg{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
 }
 
 /* ===== Container ===== */
 .container{
-    max-width:900px;
-    margin:auto;
-    padding:30px 20px;
+max-width:900px;
+margin:auto;
+padding:30px 20px;
 }
 
 /* ===== Title ===== */
 .title{
-    font-size:65px;
-    font-weight:bold;
-    background:linear-gradient(45deg,#00d9ff,#ff00d4);
-    -webkit-background-clip:text;
-    color:transparent;
-    text-shadow:0 0 25px #ff00cc;
-    animation:pulse 2s infinite alternate;
+font-size:65px;
+font-weight:bold;
+background:linear-gradient(45deg,#00d9ff,#ff00d4);
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 25px #ff00cc;
+}
+
+/* ===== Button ===== */
+.btn{
+position:relative;
+display:inline-block;
+margin:25px 0;
+padding:20px 60px;
+font-size:24px;
+font-weight:bold;
+color:white;
+border-radius:60px;
+text-decoration:none;
+background:linear-gradient(45deg,#ff2e00,#ff9100);
+box-shadow:0 0 25px #ff6a00;
+overflow:hidden;
+animation:pulse 1.2s infinite alternate;
 }
 
 @keyframes pulse{
-    from{text-shadow:0 0 15px #ff00cc;}
-    to{text-shadow:0 0 40px #00e1ff;}
+from{box-shadow:0 0 15px #ff6a00;}
+to{box-shadow:0 0 45px #ffea00;}
 }
 
-.subtitle{
-    font-size:26px;
-    color:#ffd700;
-}
-
-/* ===== HIGH CONVERSION BUTTON ===== */
-.btn{
-    position:relative;
-    display:inline-block;
-    margin:30px 0;
-    padding:20px 55px;
-    font-size:24px;
-    font-weight:bold;
-    color:white;
-    border-radius:60px;
-    text-decoration:none;
-    background:linear-gradient(45deg,#ff2e00,#ff9100);
-    box-shadow:0 0 25px #ff6a00;
-    overflow:hidden;
-    animation:btnPulse 1.3s infinite alternate;
-    transition:0.2s;
-}
-
-/* Glow Pulse */
-@keyframes btnPulse{
-    from{box-shadow:0 0 15px #ff6a00;}
-    to{box-shadow:0 0 45px #ffea00;}
-}
-
-/* Shine Effect */
 .btn::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-75%;
-    width:50%;
-    height:100%;
-    background:rgba(255,255,255,0.4);
-    transform:skewX(-20deg);
-    animation:shine 2.5s infinite;
+content:"";
+position:absolute;
+top:0;
+left:-75%;
+width:50%;
+height:100%;
+background:rgba(255,255,255,0.4);
+transform:skewX(-20deg);
+animation:shine 2s infinite;
 }
 
 @keyframes shine{
-    100%{left:130%;}
+100%{left:130%;}
 }
 
-/* Click Effect */
-.btn:active{
-    transform:scale(0.95);
+/* Shake attention */
+.shake{
+animation:shake 0.4s infinite alternate;
+}
+
+@keyframes shake{
+0%{transform:translateX(-2px);}
+100%{transform:translateX(2px);}
+}
+
+/* ===== Floating Coins ===== */
+.coin{
+position:fixed;
+font-size:28px;
+animation:float 7s linear infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
 }
 
 /* ===== Features ===== */
 .features p{
-    font-size:18px;
-    margin:8px 0;
+margin:8px 0;
+font-size:18px;
 }
 
 /* ===== Steps ===== */
-.steps{
-    margin-top:30px;
-}
-
 .step-box{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
 }
 
 .step{
-    background:rgba(255,255,255,0.08);
-    padding:15px 25px;
-    border-radius:15px;
-    min-width:200px;
-    box-shadow:0 0 15px rgba(255,215,0,0.4);
+background:rgba(255,255,255,0.08);
+padding:15px 25px;
+border-radius:15px;
+min-width:200px;
+box-shadow:0 0 15px rgba(255,215,0,0.4);
 }
 
-/* ===== Stars ===== */
-.stars{
-    font-size:30px;
-    color:#ffd700;
-    margin-top:20px;
+/* ===== Sticky Button ===== */
+.sticky{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+z-index:999;
 }
 
-.bottom-text{
-    margin-top:30px;
-    font-size:22px;
-    color:#ffcc00;
+/* ===== Notification Popup ===== */
+.notify{
+position:fixed;
+bottom:80px;
+left:15px;
+background:#000;
+padding:12px 18px;
+border-radius:10px;
+box-shadow:0 0 15px gold;
+display:none;
+font-size:14px;
 }
 
-/* Mobile */
-@media(max-width:600px){
-.title{font-size:45px;}
+/* ===== Countdown ===== */
+.timer{
+font-size:22px;
+color:#ffd700;
+margin:15px 0;
+}
+
+/* ===== Player Counter ===== */
+.players{
+font-size:18px;
+color:#00ffcc;
+margin-bottom:15px;
 }
 
 </style>
@@ -162,18 +167,21 @@ body{
 
 <!-- Floating Coins -->
 <div class="coin" style="left:10%">🪙</div>
-<div class="coin" style="left:30%; animation-delay:2s">💰</div>
-<div class="coin" style="left:60%; animation-delay:1s">🪙</div>
-<div class="coin" style="left:80%; animation-delay:3s">💰</div>
+<div class="coin" style="left:40%;animation-delay:2s">💰</div>
+<div class="coin" style="left:70%;animation-delay:1s">🪙</div>
 
 <div class="container">
 
 <div class="title">FLYING CHESS</div>
-<div class="subtitle">Real Rewards Jeeto</div>
+<h2>Real Rewards Jeeto</h2>
 
-<p>Fast Game • Easy Rules • Daily Rewards</p>
+<div class="players" id="players"></div>
 
-<a class="btn" href="https://tinyurl.com/3hbvkujv">
+<div class="timer">
+Offer Ending In: <span id="countdown"></span>
+</div>
+
+<a id="mainBtn" class="btn shake" href="https://tinyurl.com/3hbvkujv">
 DOWNLOAD & START PLAYING
 </a>
 
@@ -183,7 +191,6 @@ DOWNLOAD & START PLAYING
 <p>✔ Easy To Play</p>
 </div>
 
-<div class="steps">
 <h2>Sirf 3 Steps</h2>
 
 <div class="step-box">
@@ -191,9 +198,6 @@ DOWNLOAD & START PLAYING
 <div class="step">2️⃣ Play Flying Chess</div>
 <div class="step">3️⃣ Get Rewards</div>
 </div>
-</div>
-
-<div class="stars">★★★★★</div>
 
 <div class="features">
 <p>✔ Light & Smooth App</p>
@@ -202,13 +206,63 @@ DOWNLOAD & START PLAYING
 <p>✔ Time Pass + Rewards</p>
 </div>
 
-<div class="bottom-text">Aaj join karo aur shuru karo</div>
+</div>
 
+<!-- Sticky CTA -->
+<div class="sticky">
 <a class="btn" href="https://tinyurl.com/3hbvkujv">
 START PLAYING NOW
 </a>
-
 </div>
+
+<!-- Fake Win Notification -->
+<div class="notify" id="notify"></div>
+
+<script>
+
+/* ===== Fake Player Counter ===== */
+function updatePlayers(){
+let num = Math.floor(Math.random()*200)+1200;
+document.getElementById("players").innerText =
+num + " players online playing now";
+}
+setInterval(updatePlayers,3000);
+updatePlayers();
+
+/* ===== Countdown Timer ===== */
+let time = 900;
+setInterval(()=>{
+time--;
+let m = Math.floor(time/60);
+let s = time%60;
+document.getElementById("countdown").innerText =
+m + "m " + s + "s";
+},1000);
+
+/* ===== Fake Win Popup ===== */
+let names = ["Ali","Ravi","Aman","Sara","John","Tariq","Meena"];
+
+function showNotify(){
+let name = names[Math.floor(Math.random()*names.length)];
+let amount = Math.floor(Math.random()*9000)+500;
+
+let box = document.getElementById("notify");
+box.innerText = name + " just won ₹" + amount;
+box.style.display = "block";
+
+setTimeout(()=>{box.style.display="none"},3000);
+}
+
+setInterval(showNotify,5000);
+
+/* ===== Auto Button Focus ===== */
+setTimeout(()=>{
+document.getElementById("mainBtn").scrollIntoView({
+behavior:"smooth"
+});
+},4000);
+
+</script>
 
 </body>
 </html>
