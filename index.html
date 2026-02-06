@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a0025">
 <title>Flying Chess</title>
+
+<!-- Preload Main Image -->
+<link rel="preload" as="image" href="https://rummygrands.org/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-06-at-3.40.56-PM.webp">
 
 <style>
 
-/* ===== Background ===== */
+/* ===== Performance Boost ===== */
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
 body{
 margin:0;
 font-family:Arial, sans-serif;
@@ -15,8 +24,17 @@ text-align:center;
 color:white;
 background:linear-gradient(-45deg,#4b0042,#12001a,#6a0060,#1a0025);
 background-size:400% 400%;
-animation:bg 10s infinite alternate;
+animation:bg 12s infinite alternate;
 overflow-x:hidden;
+will-change:background-position;
+}
+
+/* Reduce motion on weak devices */
+@media (prefers-reduced-motion: reduce){
+*{
+animation:none!important;
+transition:none!important;
+}
 }
 
 @keyframes bg{
@@ -28,73 +46,91 @@ overflow-x:hidden;
 .container{
 max-width:900px;
 margin:auto;
-padding:30px 20px;
+padding:25px 15px;
 }
 
 /* ===== Title ===== */
 .title{
-font-size:65px;
+font-size:60px;
 font-weight:bold;
 background:linear-gradient(45deg,#00d9ff,#ff00d4);
 -webkit-background-clip:text;
 color:transparent;
-text-shadow:0 0 25px #ff00cc;
+text-shadow:0 0 20px #ff00cc;
 }
 
 /* ===== Button ===== */
 .btn{
 position:relative;
 display:inline-block;
-margin:25px 0;
-padding:20px 60px;
-font-size:24px;
+margin:20px 0;
+padding:18px 55px;
+font-size:22px;
 font-weight:bold;
 color:white;
-border-radius:60px;
+border-radius:50px;
 text-decoration:none;
 background:linear-gradient(45deg,#ff2e00,#ff9100);
-box-shadow:0 0 25px #ff6a00;
+box-shadow:0 0 20px #ff6a00;
 overflow:hidden;
-animation:pulse 1.2s infinite alternate;
+cursor:pointer;
+transition:transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-@keyframes pulse{
-from{box-shadow:0 0 15px #ff6a00;}
-to{box-shadow:0 0 45px #ffea00;}
+/* Click Press Effect */
+.btn:active{
+transform:scale(0.94);
+box-shadow:0 0 8px #ff6a00;
 }
 
+/* Ripple Effect */
+.btn::after{
+content:"";
+position:absolute;
+width:20px;
+height:20px;
+background:rgba(255,255,255,0.6);
+border-radius:50%;
+transform:scale(0);
+opacity:0;
+pointer-events:none;
+}
+
+.btn:active::after{
+animation:ripple 0.4s ease-out;
+}
+
+@keyframes ripple{
+to{
+transform:scale(15);
+opacity:0;
+}
+}
+
+/* Shine */
 .btn::before{
 content:"";
 position:absolute;
 top:0;
-left:-75%;
+left:-80%;
 width:50%;
 height:100%;
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.3);
 transform:skewX(-20deg);
-animation:shine 2s infinite;
+animation:shine 3s infinite;
 }
 
 @keyframes shine{
 100%{left:130%;}
 }
 
-/* Shake attention */
-.shake{
-animation:shake 0.4s infinite alternate;
-}
-
-@keyframes shake{
-0%{transform:translateX(-2px);}
-100%{transform:translateX(2px);}
-}
-
 /* ===== Floating Coins ===== */
 .coin{
 position:fixed;
-font-size:28px;
-animation:float 7s linear infinite;
-opacity:0.7;
+font-size:24px;
+animation:float 8s linear infinite;
+opacity:0.6;
+pointer-events:none;
 }
 
 @keyframes float{
@@ -104,8 +140,8 @@ to{transform:translateY(-10vh);}
 
 /* ===== Features ===== */
 .features p{
-margin:8px 0;
-font-size:18px;
+margin:6px 0;
+font-size:17px;
 }
 
 /* ===== Steps ===== */
@@ -113,61 +149,62 @@ font-size:18px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:20px;
+gap:15px;
 }
 
 .step{
 background:rgba(255,255,255,0.08);
-padding:15px 25px;
-border-radius:15px;
-min-width:200px;
-box-shadow:0 0 15px rgba(255,215,0,0.4);
+padding:12px 20px;
+border-radius:12px;
+min-width:180px;
+box-shadow:0 0 10px rgba(255,215,0,0.3);
+font-size:15px;
 }
 
 /* ===== Sticky Button ===== */
 .sticky{
 position:fixed;
-bottom:15px;
+bottom:12px;
 left:50%;
 transform:translateX(-50%);
 z-index:999;
 }
 
-/* ===== Notification Popup ===== */
+/* ===== Notification ===== */
 .notify{
 position:fixed;
-bottom:80px;
-left:15px;
+bottom:75px;
+left:12px;
 background:#000;
-padding:12px 18px;
-border-radius:10px;
-box-shadow:0 0 15px gold;
+padding:10px 14px;
+border-radius:8px;
+box-shadow:0 0 12px gold;
 display:none;
-font-size:14px;
+font-size:13px;
 }
 
-/* ===== Countdown ===== */
+/* ===== Timer ===== */
 .timer{
-font-size:22px;
+font-size:20px;
 color:#ffd700;
-margin:15px 0;
+margin:12px 0;
 }
 
-/* ===== Player Counter ===== */
+/* ===== Players ===== */
 .players{
-font-size:18px;
+font-size:16px;
 color:#00ffcc;
-margin-bottom:15px;
+margin-bottom:12px;
 }
 
-/* ===== App Preview Image ===== */
+/* ===== Preview Image ===== */
 .preview-box{
 width:100%;
-max-width:600px;
-margin:40px auto;
-padding:10px;
-border-radius:15px;
-box-shadow:0 0 20px rgba(255,0,0,0.6);
+max-width:550px;
+margin:35px auto;
+padding:8px;
+border-radius:14px;
+box-shadow:0 0 18px rgba(255,0,0,0.5);
 }
 
 .preview-box img{
@@ -175,20 +212,50 @@ width:100%;
 height:auto;
 display:block;
 border-radius:12px;
+loading:lazy;
 }
 
-/* Mobile Fit */
+/* ===== Mobile Optimization ===== */
 @media(max-width:600px){
+
+body{
+animation:none; /* Save battery */
+}
+
+.title{
+font-size:34px;
+}
+
+.btn{
+font-size:16px;
+padding:11px 26px;
+border-radius:38px;
+box-shadow:0 0 12px #ff6a00;
+}
+
+.sticky .btn{
+font-size:14px;
+padding:9px 22px;
+}
+
+.features p{
+font-size:15px;
+}
+
+.step{
+min-width:140px;
+font-size:14px;
+}
+
 .preview-box{
 max-width:95%;
+box-shadow:0 0 12px rgba(255,0,0,0.4);
 }
-.title{
-font-size:42px;
+
+.coin{
+display:none; /* Remove floating icons on mobile */
 }
-.btn{
-font-size:20px;
-padding:15px 40px;
-}
+
 }
 
 </style>
@@ -198,8 +265,8 @@ padding:15px 40px;
 
 <!-- Floating Coins -->
 <div class="coin" style="left:10%">🪙</div>
-<div class="coin" style="left:40%;animation-delay:2s">💰</div>
-<div class="coin" style="left:70%;animation-delay:1s">🪙</div>
+<div class="coin" style="left:45%;animation-delay:2s">💰</div>
+<div class="coin" style="left:75%;animation-delay:1s">🪙</div>
 
 <div class="container">
 
@@ -212,7 +279,7 @@ padding:15px 40px;
 Offer Ending In: <span id="countdown"></span>
 </div>
 
-<a id="mainBtn" class="btn shake" href="https://tinyurl.com/3hbvkujv">
+<a id="mainBtn" class="btn" href="https://tinyurl.com/3hbvkujv">
 DOWNLOAD & START PLAYING
 </a>
 
@@ -237,9 +304,9 @@ DOWNLOAD & START PLAYING
 <p>✔ Time Pass + Rewards</p>
 </div>
 
-<!-- App Preview Image -->
+<!-- Preview Image -->
 <div class="preview-box">
-<img src="https://rummygrands.org/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-06-at-3.40.56-PM.webp" alt="Flying Chess App">
+<img src="https://rummygrands.org/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-06-at-3.40.56-PM.webp" alt="Flying Chess App" loading="lazy">
 </div>
 
 </div>
@@ -251,52 +318,64 @@ START PLAYING NOW
 </a>
 </div>
 
-<!-- Fake Win Notification -->
+<!-- Notification -->
 <div class="notify" id="notify"></div>
 
 <script>
 
-/* ===== Fake Player Counter ===== */
+/* ===== Player Counter ===== */
 function updatePlayers(){
-let num = Math.floor(Math.random()*200)+1200;
-document.getElementById("players").innerText =
+const num = Math.floor(Math.random()*200)+1200;
+document.getElementById("players").textContent =
 num + " players online playing now";
 }
 setInterval(updatePlayers,3000);
 updatePlayers();
 
-/* ===== Countdown Timer ===== */
+/* ===== Countdown ===== */
 let time = 900;
+
 setInterval(()=>{
+if(time<=0) time = 900;
+
 time--;
-let m = Math.floor(time/60);
-let s = time%60;
-document.getElementById("countdown").innerText =
-m + "m " + s + "s";
+
+const m = Math.floor(time/60);
+const s = time%60;
+
+document.getElementById("countdown").textContent =
+m + "m " + (s<10?"0"+s:s) + "s";
+
 },1000);
 
-/* ===== Fake Win Popup ===== */
-let names = ["Ali","Ravi","Aman","Sara","John","Tariq","Meena"];
+/* ===== Win Popup ===== */
+const names = ["Ali","Ravi","Aman","Sara","John","Tariq","Meena"];
 
 function showNotify(){
-let name = names[Math.floor(Math.random()*names.length)];
-let amount = Math.floor(Math.random()*9000)+500;
 
-let box = document.getElementById("notify");
-box.innerText = name + " just won ₹" + amount;
+const name = names[Math.floor(Math.random()*names.length)];
+const amount = Math.floor(Math.random()*9000)+500;
+
+const box = document.getElementById("notify");
+
+box.textContent = name + " just won ₹" + amount;
 box.style.display = "block";
 
-setTimeout(()=>{box.style.display="none"},3000);
+setTimeout(()=>{
+box.style.display="none";
+},2500);
+
 }
 
-setInterval(showNotify,5000);
+setInterval(showNotify,5500);
 
-/* ===== Auto Button Focus ===== */
+/* ===== Auto Focus CTA ===== */
 setTimeout(()=>{
 document.getElementById("mainBtn").scrollIntoView({
-behavior:"smooth"
+behavior:"smooth",
+block:"center"
 });
-},4000);
+},3500);
 
 </script>
 
