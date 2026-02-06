@@ -77,4 +77,138 @@ body{
     border-radius:60px;
     text-decoration:none;
     background:linear-gradient(45deg,#ff2e00,#ff9100);
-    box-shadow:0 0 25px #f
+    box-shadow:0 0 25px #ff6a00;
+    overflow:hidden;
+    animation:btnPulse 1.3s infinite alternate;
+    transition:0.2s;
+}
+
+/* Glow Pulse */
+@keyframes btnPulse{
+    from{box-shadow:0 0 15px #ff6a00;}
+    to{box-shadow:0 0 45px #ffea00;}
+}
+
+/* Shine Effect */
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-75%;
+    width:50%;
+    height:100%;
+    background:rgba(255,255,255,0.4);
+    transform:skewX(-20deg);
+    animation:shine 2.5s infinite;
+}
+
+@keyframes shine{
+    100%{left:130%;}
+}
+
+/* Click Effect */
+.btn:active{
+    transform:scale(0.95);
+}
+
+/* ===== Features ===== */
+.features p{
+    font-size:18px;
+    margin:8px 0;
+}
+
+/* ===== Steps ===== */
+.steps{
+    margin-top:30px;
+}
+
+.step-box{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.step{
+    background:rgba(255,255,255,0.08);
+    padding:15px 25px;
+    border-radius:15px;
+    min-width:200px;
+    box-shadow:0 0 15px rgba(255,215,0,0.4);
+}
+
+/* ===== Stars ===== */
+.stars{
+    font-size:30px;
+    color:#ffd700;
+    margin-top:20px;
+}
+
+.bottom-text{
+    margin-top:30px;
+    font-size:22px;
+    color:#ffcc00;
+}
+
+/* Mobile */
+@media(max-width:600px){
+.title{font-size:45px;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Floating Coins -->
+<div class="coin" style="left:10%">🪙</div>
+<div class="coin" style="left:30%; animation-delay:2s">💰</div>
+<div class="coin" style="left:60%; animation-delay:1s">🪙</div>
+<div class="coin" style="left:80%; animation-delay:3s">💰</div>
+
+<div class="container">
+
+<div class="title">FLYING CHESS</div>
+<div class="subtitle">Real Rewards Jeeto</div>
+
+<p>Fast Game • Easy Rules • Daily Rewards</p>
+
+<a class="btn" href="https://tinyurl.com/3hbvkujv">
+DOWNLOAD & START PLAYING
+</a>
+
+<div class="features">
+<p>✔ Fast Withdrawals</p>
+<p>✔ Secure Game</p>
+<p>✔ Easy To Play</p>
+</div>
+
+<div class="steps">
+<h2>Sirf 3 Steps</h2>
+
+<div class="step-box">
+<div class="step">1️⃣ Register</div>
+<div class="step">2️⃣ Play Flying Chess</div>
+<div class="step">3️⃣ Get Rewards</div>
+</div>
+</div>
+
+<div class="stars">★★★★★</div>
+
+<div class="features">
+<p>✔ Light & Smooth App</p>
+<p>✔ Har Din Chance</p>
+<p>✔ Simple Gameplay</p>
+<p>✔ Time Pass + Rewards</p>
+</div>
+
+<div class="bottom-text">Aaj join karo aur shuru karo</div>
+
+<a class="btn" href="https://tinyurl.com/3hbvkujv">
+START PLAYING NOW
+</a>
+
+</div>
+
+</body>
+</html>
